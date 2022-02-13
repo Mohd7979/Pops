@@ -1,34 +1,34 @@
-
-const $confirm = (text, buttonColor) =&gt; { 
-    return new Promise((resolve) =&gt; {
+const $confirm = (text, buttonColor) => { 
+    return new Promise((resolve) => {
     
-    var as_background = document.createElement(&#39;div&#39;);
-    var as_box = document.createElement(&#39;div&#39;);
-    var as_contentWrapper = document.createElement(&#39;div&#39;);
-    var as_textnode = document.createElement(&#39;div&#39;);
-    var as_okButton = document.createElement(&#39;button&#39;);
-    var as_cancelButton = document.createElement(&#39;button&#39;);
-    var as_buttonSection = document.createElement(&#39;div&#39;);
+    var as_background = document.createElement('div');
+    var as_box = document.createElement('div');
+    var as_contentWrapper = document.createElement('div');
+    var as_textnode = document.createElement('div');
+    var as_okButton = document.createElement('button');
+    var as_cancelButton = document.createElement('button');
+    var as_buttonSection = document.createElement('div');
 
-    as_okButton.innerText = &#39;Haye&#39;;
+    as_okButton.innerText = 'Haye';
+    as_cancelButton.innerText = '';
     as_textnode.innerText = text;
 
-    as_box.classList.add(&quot;as-box&quot;);
-    as_background.classList.add(&quot;as-background&quot;);
+    as_box.classList.add("as-box");
+    as_background.classList.add("as-background");
 
-    as_okButton.classList.add(&quot;as-okButton&quot;);
-    as_okButton.setAttribute(&quot;id&quot;,&quot;as-okButton&quot;);
-    as_cancelButton.classList.add(&quot;as-cancelButton&quot;);
+    as_okButton.classList.add("as-okButton");
+    as_okButton.setAttribute("id","as-okButton");
+    as_cancelButton.classList.add("as-cancelButton");
 
-    as_textnode.classList.add(&quot;as-textnode&quot;);
-    as_buttonSection.classList.add(&quot;as-buttonSection&quot;);
-    as_contentWrapper.classList.add(&quot;as-contentWrapper&quot;);
+    as_textnode.classList.add("as-textnode");
+    as_buttonSection.classList.add("as-buttonSection");
+    as_contentWrapper.classList.add("as-contentWrapper");
 
 
-    as_box.style.backgroundColor = &#39;#fff&#39;;
-    as_okButton.style.backgroundColor = buttonColor || &#39;#5AB9EA&#39;;
-    as_okButton.style.color =  &#39;#fff&#39;;
-    as_textnode.style.color = &#39;#666666&#39;;
+    as_box.style.backgroundColor = '#fff';
+    as_okButton.style.backgroundColor = buttonColor || '#5AB9EA';
+    as_okButton.style.color =  '#fff';
+    as_textnode.style.color = '#666666';
 
 
     as_box.appendChild(as_contentWrapper);
@@ -40,10 +40,10 @@ const $confirm = (text, buttonColor) =&gt; {
 
     document.body.appendChild(as_background);
 
-    var style = document.createElement(&#39;style&#39;);
+    var style = document.createElement('style');
 
-    style.setAttribute(&quot;type&quot;,&quot;text/css&quot;);
-    style.setAttribute(&quot;id&quot;,&quot;as_style_alertConfirm&quot;);
+    style.setAttribute("type","text/css");
+    style.setAttribute("id","as_style_alertConfirm");
 
     style.innerHTML =
     `.as-box{
@@ -73,7 +73,7 @@ const $confirm = (text, buttonColor) =&gt; {
         left: 0; 
     
         background-color: rgba(0, 0, 0, 0.425);
-        font-family: &#39;Heebo&#39;, sans-serif;
+        font-family: 'Heebo', sans-serif;
         z-index: 100000;  
     }
 
@@ -137,7 +137,7 @@ const $confirm = (text, buttonColor) =&gt; {
     
     document.head.appendChild(style);
 
-    as_okButton.addEventListener(&#39;click&#39;, ()=&gt;{
+    as_okButton.addEventListener('click', ()=>{
         asOkay();
 
         const back = true;
@@ -146,19 +146,19 @@ const $confirm = (text, buttonColor) =&gt; {
         };
     });
 
-    as_cancelButton.addEventListener(&#39;click&#39;, ()=&gt;{
+    as_cancelButton.addEventListener('click', ()=>{
         asCancel();
     });
 
     
     function asOkay(){
-        let as_style_alertConfirm = document.getElementById(&quot;as_style_alertConfirm&quot;);
+        let as_style_alertConfirm = document.getElementById("as_style_alertConfirm");
         as_style_alertConfirm.remove();
         as_background.remove();
     };
 
     function asCancel(){
-        let as_style_alertConfirm = document.getElementById(&quot;as_style_alertConfirm&quot;);
+        let as_style_alertConfirm = document.getElementById("as_style_alertConfirm");
         as_style_alertConfirm.remove();
         as_background.remove();
     };
@@ -167,33 +167,90 @@ const $confirm = (text, buttonColor) =&gt; {
  };
 
 
+function $toast(text, bgclr){
+    var as_toast = document.createElement('div');
+    as_toast.classList.add("as-toast");
+    as_toast.innerText = text;
+    as_toast.style.backgroundColor = bgclr || '#2C3E50';
+
+    var style = document.createElement('style');
+    style.setAttribute("type","text/css");
+    style.setAttribute("id","as_style_toast");
+
+    style.innerHTML =`
+    .as-toast{
+        max-width: 200px;
+        text-align: center;
+        padding: 10px;
+        font-size: 16px;
+        font-family: sans-serif;
+        border-radius: 3px;
+        position: fixed;
+        bottom: -10%;
+        left: 50%;
+        color: #fff;
+        transform: translateX(-50%);
+    
+        animation-name: fadeinout;
+        animation-duration: 2500ms;
+    
+        word-wrap: break-word;
+        line-height: 1.4;
+        letter-spacing: .4px;
+
+        user-select: none;
+        -ms-user-select: none;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -webkit-touch-callout: none;
+    }
+    
+    @keyframes fadeinout{
+        10%{bottom: 15%;  opacity: 100%}
+        20%{bottom: 15%; opacity: 100%}
+        40%{bottom: 15%; opacity: 100%}
+        60%{bottom: 15%; opacity: 100%}
+        80%{bottom: 15%; opacity: 100%}
+       100%{bottom: -10%;  opacity: 100%}
+    }`;
+
+    setTimeout(function(){
+        as_toast.remove();
+        let as_style_toast = document.getElementById("as_style_toast");
+        as_style_toast.remove();
+    }, 2600);
+
+    document.head.appendChild(style);
+    document.body.appendChild(as_toast);
+};
+
 
 function $alert(text, buttonColor){
 
-    var as_background = document.createElement(&#39;div&#39;);
-    var as_box = document.createElement(&#39;div&#39;);
-    var as_contentWrapper = document.createElement(&#39;div&#39;);
-    var as_textnode = document.createElement(&#39;div&#39;);
-    var as_button = document.createElement(&#39;button&#39;);
-    var as_buttonSection = document.createElement(&#39;div&#39;);
+    var as_background = document.createElement('div');
+    var as_box = document.createElement('div');
+    var as_contentWrapper = document.createElement('div');
+    var as_textnode = document.createElement('div');
+    var as_button = document.createElement('button');
+    var as_buttonSection = document.createElement('div');
 
 
-    as_button.innerText = &#39;Haye&#39;;
+    as_button.innerText = 'Haye';
     as_textnode.innerText = text;
 
 
-    as_box.classList.add(&quot;as-box&quot;);
-    as_background.classList.add(&quot;as-background&quot;);
-    as_button.classList.add(&quot;as-button&quot;);
-    as_textnode.classList.add(&quot;as-textnode&quot;);
-    as_buttonSection.classList.add(&quot;as-buttonSection&quot;);
-    as_contentWrapper.classList.add(&quot;as-contentWrapper&quot;);
+    as_box.classList.add("as-box");
+    as_background.classList.add("as-background");
+    as_button.classList.add("as-button");
+    as_textnode.classList.add("as-textnode");
+    as_buttonSection.classList.add("as-buttonSection");
+    as_contentWrapper.classList.add("as-contentWrapper");
 
 
-    as_box.style.backgroundColor =  &#39;#fff&#39;;
-    as_button.style.backgroundColor = buttonColor || &#39;#5AB9EA&#39;;
-    as_button.style.color = &#39;#fff&#39;;
-    as_textnode.style.color = &#39;#666666&#39;;
+    as_box.style.backgroundColor =  '#fff';
+    as_button.style.backgroundColor = buttonColor || '#5AB9EA';
+    as_button.style.color = '#fff';
+    as_textnode.style.color = '#666666';
 
     
     as_box.appendChild(as_contentWrapper);
@@ -203,10 +260,10 @@ function $alert(text, buttonColor){
     as_background.appendChild(as_box);
     document.body.appendChild(as_background);
 
-    var style = document.createElement(&#39;style&#39;);
+    var style = document.createElement('style');
 
-    style.setAttribute(&quot;type&quot;,&quot;text/css&quot;);
-    style.setAttribute(&quot;id&quot;,&quot;as_style_basicAlert&quot;);
+    style.setAttribute("type","text/css");
+    style.setAttribute("id","as_style_basicAlert");
 
     style.innerHTML =
     `.as-box{
@@ -236,7 +293,7 @@ function $alert(text, buttonColor){
         left: 0; 
     
         background-color: rgba(0, 0, 0, 0.425);
-        font-family: &#39;Heebo&#39;, sans-serif;
+        font-family: 'Heebo', sans-serif;
         z-index: 100000;  
     }
 
@@ -246,10 +303,10 @@ function $alert(text, buttonColor){
         font-size: 17px;
         word-wrap: break-word;
         line-height: 1.5;
-        padding-right: 10px;
+        padding-right: 20px;
     }
     .as-textnode::-webkit-scrollbar{
-        width: 1px;
+        width: 5px;
     }
     .as-textnode::-webkit-scrollbar-thumb{
         background-color: #D5D8DC;
@@ -289,18 +346,10 @@ function $alert(text, buttonColor){
     
     document.head.appendChild(style);
  
-    as_button.addEventListener(&#39;click&#39;, ()=&gt;{
-        let as_style_basicAlert = document.getElementById(&quot;as_style_basicAlert&quot;);
+    as_button.addEventListener('click', ()=>{
+        let as_style_basicAlert = document.getElementById("as_style_basicAlert");
         as_style_basicAlert.remove();
         as_background.remove();
     });
     
-};  
- <script type='text/javascript'>
-
-    var myconfirm = document.getElementById(&quot;Welli&quot;)
-    myconfirm.addEventListener(&quot;click&quot;, function(){
-        $confirm(&quot;Kulankaan Ma Uusan Bilaaban!&quot;, &quot;#0B8043&quot;)
-    })
-
-</script> 
+};
