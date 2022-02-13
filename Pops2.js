@@ -1,4 +1,4 @@
-<script>
+
 const $confirm = (text, buttonColor) =&gt; { 
     return new Promise((resolve) =&gt; {
     
@@ -295,9 +295,7 @@ function $alert(text, buttonColor){
         as_background.remove();
     });
     
-};
-</script>
-  
+};  
  <script type='text/javascript'>
 
     var myconfirm = document.getElementById(&quot;Welli&quot;)
