@@ -78,7 +78,7 @@ const $confirm = (text, buttonColor) => {
         font-size: 17px;
         word-wrap: break-word;
         line-height: 1.5;
-        padding-right: 20px;
+        padding-right: 10px;
     }
     .as-textnode::-webkit-scrollbar{
         width: 5px;
@@ -155,64 +155,6 @@ const $confirm = (text, buttonColor) => {
 
     });
  };
-
-
-function $toast(text, bgclr){
-    var as_toast = document.createElement('div');
-    as_toast.classList.add("as-toast");
-    as_toast.innerText = text;
-    as_toast.style.backgroundColor = bgclr || '#2C3E50';
-
-    var style = document.createElement('style');
-    style.setAttribute("type","text/css");
-    style.setAttribute("id","as_style_toast");
-
-    style.innerHTML =`
-    .as-toast{
-        max-width: 200px;
-        text-align: center;
-        padding: 10px;
-        font-size: 16px;
-        font-family: sans-serif;
-        border-radius: 3px;
-        position: fixed;
-        bottom: -10%;
-        left: 50%;
-        color: #fff;
-        transform: translateX(-50%);
-    
-        animation-name: fadeinout;
-        animation-duration: 2500ms;
-    
-        word-wrap: break-word;
-        line-height: 1.4;
-        letter-spacing: .4px;
-        user-select: none;
-        -ms-user-select: none;
-        -moz-user-select: none;
-        -webkit-user-select: none;
-        -webkit-touch-callout: none;
-    }
-    
-    @keyframes fadeinout{
-        10%{bottom: 15%;  opacity: 100%}
-        20%{bottom: 15%; opacity: 100%}
-        40%{bottom: 15%; opacity: 100%}
-        60%{bottom: 15%; opacity: 100%}
-        80%{bottom: 15%; opacity: 100%}
-       100%{bottom: -10%;  opacity: 100%}
-    }`;
-
-    setTimeout(function(){
-        as_toast.remove();
-        let as_style_toast = document.getElementById("as_style_toast");
-        as_style_toast.remove();
-    }, 2600);
-
-    document.head.appendChild(style);
-    document.body.appendChild(as_toast);
-};
-
 
 function $alert(text, buttonColor){
 
